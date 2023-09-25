@@ -14,8 +14,11 @@ public class Player : BaseCharacterBehaviour
         targetTransform = GameObject.FindGameObjectWithTag("Target").transform;
     }
 
-    private void Update()
+    private new void Update()
     {
+        if(_firstRun)
+            base.Update();
+        
         if (health.isDead() && !deathStatus)
         {
             deathStatus = true;

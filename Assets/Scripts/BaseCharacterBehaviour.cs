@@ -9,7 +9,6 @@ using Weapon;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class BaseCharacterBehaviour : MonoBehaviour, IDamageable, IBaseCharacterBehaviour
 {
-    [DoNotSerialize]
     public EquipmentList equipmentList;
     [DoNotSerialize]
     public WeaponAttack weaponAttack;
@@ -26,13 +25,14 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, IDamageable, IBase
     protected SpriteRenderer _spriteRenderer;
     protected CharacterAnimationEvents _characterAnimationEvents;
     protected bool deathStatus = false;
-    
 
+
+    protected bool _firstRun = true;
     protected virtual void Start()
     {
         characterMovement.rb = this.GetComponent<Rigidbody2D>();
 
-        equipmentList = GetComponent<EquipmentList>();
+        // equipmentList = GetComponent<EquipmentList>();
         weaponAttack = GetComponent<WeaponAttack>();
 
         weaponTarget = GetComponentInChildren<WeaponTarget>();
@@ -46,9 +46,13 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, IDamageable, IBase
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    protected void Update()
     {
-        
+        if (_firstRun)
+        {
+            cycleWeapon();
+            _firstRun = false;
+        }
     }
 
     public abstract void attack();
