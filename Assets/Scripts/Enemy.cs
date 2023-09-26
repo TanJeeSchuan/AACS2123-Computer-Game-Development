@@ -23,7 +23,7 @@ public class Enemy : BaseCharacterBehaviour
     {
         base.Start();
         
-        targetTransform = GameObject.FindGameObjectWithTag("Target").transform;
+        targetTransform = GetComponentInChildren<WeaponTarget>().transform;
         _aimmedTransform = aimmedGameObject.transform;
     }
 
@@ -43,6 +43,18 @@ public class Enemy : BaseCharacterBehaviour
             move();
             moveTarget(_aimmedTransform.position);
             
+            // Debug.Log(enemyAI.attackBool(targetTransform.position, 
+            //         _aimmedTransform.position, 
+            //         currentWeapon.getRange(), 
+            //         currentWeapon.getWeaponType().Equals("Hitbox")? 0: keptDistance));
+            
+            if (enemyAI.attackBool(targetTransform.position, 
+                    _aimmedTransform.position, 
+                    currentWeapon.getWeaponType().Equals("Hitbox")? currentWeapon.getRange(): float.PositiveInfinity,
+                    currentWeapon.getWeaponType().Equals("Hitbox")? 0: keptDistance))
+                attack();
+            
+            
             if (flipWhenRotate)
             {
 //                switch ((- transform.position + _aimmedTransform.position).x)
@@ -54,6 +66,7 @@ public class Enemy : BaseCharacterBehaviour
                         break;
                 }
             }
+            
         }
     }
 
@@ -65,7 +78,7 @@ public class Enemy : BaseCharacterBehaviour
 
     public override void attack()
     {
-        
+        weaponAttack.attack(currentWeapon ,targetTransform.position);
     }
 
     public override void rotate()

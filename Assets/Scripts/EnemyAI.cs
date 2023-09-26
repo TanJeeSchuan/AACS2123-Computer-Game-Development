@@ -80,8 +80,15 @@ public class EnemyAI
     }
 
     //returns if enemy should attack, (if within range, if between range, always)
-    public bool attackBool()
+    public bool attackBool(Vector2 currentPosition, Vector2 aimedPosition, float attackRange, float dontAttackRange)
     {
+        float distanceFromCurrentToAimmed = (-currentPosition + aimedPosition).magnitude;
+        
+        Debug.Log(distanceFromCurrentToAimmed);
+        
+        if (distanceFromCurrentToAimmed < attackRange && distanceFromCurrentToAimmed > dontAttackRange)
+            return true;
+        
         return false;
     }
 

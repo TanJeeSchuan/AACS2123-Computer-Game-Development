@@ -9,17 +9,17 @@ using Weapon;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class BaseCharacterBehaviour : MonoBehaviour, IDamageable, IBaseCharacterBehaviour
 {
-    public EquipmentList equipmentList;
-    [DoNotSerialize]
-    public WeaponAttack weaponAttack;
-    [DoNotSerialize]
-    public WeaponTarget weaponTarget;
-
-    public CharacterMovement characterMovement;
     public Health health;
+    public CharacterMovement characterMovement;
+
+    public EquipmentList equipmentList;
     public WeaponBaseClass currentWeapon;
 
-    [DoNotSerialize]
+    [NonSerialized]
+    public WeaponAttack weaponAttack;
+    [NonSerialized]
+    public WeaponTarget weaponTarget;
+    [NonSerialized]
     public DisplayWeapon displayedWeapon;
 
     protected SpriteRenderer _spriteRenderer;
@@ -39,7 +39,7 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, IDamageable, IBase
         
         currentWeapon = equipmentList.getFirstWeapon();
         displayedWeapon = GetComponentInChildren<DisplayWeapon>();
-        // displayedWeapon.UpdateWeapon(currentWeapon);
+        displayedWeapon.UpdateWeapon(currentWeapon);
 
         _characterAnimationEvents = GetComponent<CharacterAnimationEvents>();
         

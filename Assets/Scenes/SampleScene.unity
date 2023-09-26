@@ -563,7 +563,6 @@ GameObject:
   - component: {fileID: 432406574}
   - component: {fileID: 432406578}
   - component: {fileID: 432406573}
-  - component: {fileID: 432406576}
   - component: {fileID: 432406579}
   - component: {fileID: 432406581}
   - component: {fileID: 432406580}
@@ -603,16 +602,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0156453782ee1d941a8ce35a87b6306b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipmentList: {fileID: 432406576}
-  weaponAttack: {fileID: 0}
-  weaponTarget: {fileID: 0}
-  characterMovement:
-    maxSpeed: {x: 10, y: 10}
   health:
     maxHealth: 100
     health: 100
+  characterMovement:
+    maxSpeed: {x: 10, y: 10}
+  equipmentList:
+    weaponList:
+    - {fileID: 11400000, guid: 05cdadbb90a6b644196fb49ddbc824ac, type: 2}
+    - {fileID: 11400000, guid: 405d33b021b7136419bf4d89e2c942b8, type: 2}
+    - {fileID: 11400000, guid: 1fecf91f4661da1409e0a2c5d4ed6cdc, type: 2}
   currentWeapon: {fileID: 11400000, guid: 1fecf91f4661da1409e0a2c5d4ed6cdc, type: 2}
-  displayedWeapon: {fileID: 0}
 --- !u!50 &432406574
 Rigidbody2D:
   serializedVersion: 4
@@ -692,22 +692,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &432406576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 432406570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80932be290e44b345b71e059b12c2459, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponList:
-  - {fileID: 11400000, guid: 1fecf91f4661da1409e0a2c5d4ed6cdc, type: 2}
-  - {fileID: 11400000, guid: 405d33b021b7136419bf4d89e2c942b8, type: 2}
-  - {fileID: 11400000, guid: 05cdadbb90a6b644196fb49ddbc824ac, type: 2}
 --- !u!61 &432406578
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1929,7 +1913,6 @@ GameObject:
   - component: {fileID: 941344668}
   - component: {fileID: 941344667}
   - component: {fileID: 941344670}
-  - component: {fileID: 941344669}
   - component: {fileID: 941344671}
   - component: {fileID: 941344674}
   - component: {fileID: 941344673}
@@ -1977,7 +1960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941344665}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3649, y: -4.7869, z: 0.18176055}
+  m_LocalPosition: {x: 14.02, y: 0.5, z: 0.18176055}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1986,20 +1969,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &941344669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 941344665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80932be290e44b345b71e059b12c2459, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponList:
-  - {fileID: 11400000, guid: 05cdadbb90a6b644196fb49ddbc824ac, type: 2}
 --- !u!114 &941344670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2012,16 +1981,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bfd7556babd354eb582a306e2e432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipmentList: {fileID: 941344669}
-  weaponAttack: {fileID: 0}
-  weaponTarget: {fileID: 0}
-  characterMovement:
-    maxSpeed: {x: 2, y: 2}
   health:
     maxHealth: 30
     health: 30
+  characterMovement:
+    maxSpeed: {x: 2, y: 2}
+  equipmentList:
+    weaponList:
+    - {fileID: 11400000, guid: 1fecf91f4661da1409e0a2c5d4ed6cdc, type: 2}
   currentWeapon: {fileID: 0}
-  displayedWeapon: {fileID: 0}
   aimmedGameObject: {fileID: 432406570}
   flipWhenRotate: 1
   enemyAI:
@@ -2032,7 +2000,10 @@ MonoBehaviour:
     - {fileID: 16130690}
     - {fileID: 1752176317}
     - {fileID: 2138079452}
-  argoRange: 4
+    keepDistanceFromTarget: 0
+    returnToOriginalLocationAfterAgro: 0
+  argoRange: 10
+  keptDistance: 5
 --- !u!212 &941344671
 SpriteRenderer:
   m_ObjectHideFlags: 0

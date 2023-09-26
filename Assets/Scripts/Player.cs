@@ -11,7 +11,7 @@ public class Player : BaseCharacterBehaviour
     private new void Start()
     {
         base.Start();
-        targetTransform = GameObject.FindGameObjectWithTag("Target").transform;
+        targetTransform = GetComponentInChildren<WeaponTarget>().transform;
     }
 
     private new void Update()
